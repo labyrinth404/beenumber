@@ -1,24 +1,35 @@
-import React, { useContext, useRef } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
+import useSound from 'use-sound';
 import { Card, NumberInput, Badge, Button, Group, ActionIcon, NumberInputHandlers, rem } from '@mantine/core';
 import Result from '../Result';
 import ParametersContext from '../../context/ParametersContext';
 import { IActionTypeParameters } from '../../constant';
+import backgroundMusic from '../../sound/background.mp3';
 
 function GameDisplay() {
     const { state, dispatch } = useContext(ParametersContext);
     const handlers = useRef<NumberInputHandlers>();
-    const minusRef = useRef();
+    const ref1 = useRef() as React.MutableRefObject<HTMLInputElement>;
+    const [value, setValue] = useState(state!.variant);
 
-    let number = state!.variant;
+    const [playBckg, { stop: stopBckg }] = useSound(backgroundMusic);
+
 
     const handleButton = () => {
         if (dispatch) {
             dispatch({
                 type: IActionTypeParameters.setVariant,
-                payload: number
-            })
-        }
+                payload: value
+            });
+            setValue(-1);
+            ref1.current.focus();
+        };
     };
+
+
+    useEffect(() => {
+        setTimeout(() => playBckg(), 1000);
+    }, []);
 
     return (
         <>
@@ -35,30 +46,19 @@ function GameDisplay() {
                     {`Всего: ${state?.interation}`}
                 </Badge>
             </Group>
-            {/*             <NumberInput
-                autoFocus
-                placeholder="Твое число"
-                label="Твое число"
-                withAsterisk
-                min={state?.min}
-                max={state?.max}
-                onChange={(num) => {
-                    if (typeof num === 'number') {
-                        number = num
-                    }
-                }}
-            /> */}
             <Group spacing={5} position='center' mt="md" mb="xs">
-                <ActionIcon size={42} variant="default" onClick={() => handlers.current?.decrement()}>
+                <ActionIcon disabled={state?.stackVariant.length === state?.interation} size={42} variant="default" onClick={() => handlers.current?.decrement()}>
                     –
                 </ActionIcon>
                 <NumberInput
+                    ref={ref1}
+                    disabled={state?.stackVariant.length === state?.interation}
                     autoFocus
                     hideControls
-                    value={number < 0 ? undefined : number}
+                    defaultValue={value <= 0 ? undefined : value}
                     onChange={(num) => {
                         if (typeof num === 'number') {
-                            number = num
+                            setValue(num);
                         }
                     }}
                     handlersRef={handlers}
@@ -67,11 +67,11 @@ function GameDisplay() {
                     step={1}
                     styles={{ input: { width: rem(54), textAlign: 'center' } }}
                 />
-                <ActionIcon size={42} variant="default" onClick={() => handlers.current?.increment()}>
+                <ActionIcon disabled={state?.stackVariant.length === state?.interation} size={42} variant="default" onClick={() => handlers.current?.increment()}>
                     +
                 </ActionIcon>
             </Group>
-            <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => handleButton()}>
+            <Button disabled={value <= 0 ? true : false} variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => handleButton()}>
                 Проверим
             </Button>
         </>
