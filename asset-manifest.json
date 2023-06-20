@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/beenumber/static/css/main.fa93f528.css",
+    "main.js": "/beenumber/static/js/main.4461f9e1.js",
+    "static/js/787.e4b9317e.chunk.js": "/beenumber/static/js/787.e4b9317e.chunk.js",
+    "index.html": "/beenumber/index.html",
+    "main.fa93f528.css.map": "/beenumber/static/css/main.fa93f528.css.map",
+    "main.4461f9e1.js.map": "/beenumber/static/js/main.4461f9e1.js.map",
+    "787.e4b9317e.chunk.js.map": "/beenumber/static/js/787.e4b9317e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa93f528.css",
+    "static/js/main.4461f9e1.js"
+  ]
+}
