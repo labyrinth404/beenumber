@@ -25,7 +25,7 @@ function ModeDisplay() {
 
     return (
         <>
-            <Group>
+            <Group position="center">
                 <div className="img-menu" onClick={() => handleImOracle()}>
                     <Image width={200} height={200} src='./day22-owl.svg' />
                     <Button fullWidth variant="gradient" gradient={GRADIENT.imOracle} >

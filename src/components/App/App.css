@@ -1,5 +1,6 @@
 .main {
   width: 50vw;
+  height: 90vh;
   margin: 20px auto;
   display: flex;
   text-align: center;
@@ -11,13 +12,23 @@
   cursor: pointer;
 }
 
+.main .mantine-Paper-root {
+  width: 100%;
+  height: fit-content;
+}
 
 body {
   background-color:cadetblue;
 }
 
-@media (max-width: 600px)  {
+@media (max-width: 1000px)  {
   .main {
     width: 80vw;
+  }
+}
+
+@media (max-width: 500px)  {
+  .main {
+    width: 98vw;
   }
 }

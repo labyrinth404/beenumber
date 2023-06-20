@@ -33,7 +33,7 @@ function App() {
         </Card>
           ;
       case Mode.youOracle:
-        return <Card shadow="sm" padding="lg" radius="md" withBorder>
+        return <Card shadow="sm" padding="lg" radius="md" withBorder >
           <StartDisplay />
         </Card>
       default: return <ModeDisplay />
