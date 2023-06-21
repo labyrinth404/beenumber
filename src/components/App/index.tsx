@@ -5,6 +5,7 @@ import { subModeReducer, modeReducer, parametersReducer } from '../../reducer';
 import GameDisplay from '../GameDisplay';
 import StartDisplay from '../StartDisplay';
 import ModeDisplay from '../ModeDisplay';
+import SoundButton from '../SoundButton';
 
 import ParametersContext from '../../context/ParametersContext'
 import ModeContext from '../../context/ModeContext';
@@ -45,6 +46,7 @@ function App() {
     <ModeContext.Provider value={{ dispatch: dispatchMode, state: mode }}>
       <SubModeContext.Provider value={{ dispatch: dispatchSubMode, state: subMode }}>
         <ParametersContext.Provider value={{ dispatch, state }}>
+          <SoundButton sound={'./sound/background.mp3'} />
           <div className='main'>
             {handleMode(mode)}
           </div>

@@ -1,18 +1,14 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
-import useSound from 'use-sound';
+import React, { useState, useContext, useRef } from 'react';
 import { Card, NumberInput, Badge, Button, Group, ActionIcon, NumberInputHandlers, rem } from '@mantine/core';
 import Result from '../Result';
 import ParametersContext from '../../context/ParametersContext';
 import { IActionTypeParameters } from '../../constant';
-import backgroundMusic from '../../sound/background.mp3';
 
 function GameDisplay() {
     const { state, dispatch } = useContext(ParametersContext);
     const handlers = useRef<NumberInputHandlers>();
     const ref1 = useRef() as React.MutableRefObject<HTMLInputElement>;
     const [value, setValue] = useState(state!.variant);
-
-    const [playBckg, { stop: stopBckg }] = useSound(backgroundMusic);
 
 
     const handleButton = () => {
@@ -25,11 +21,6 @@ function GameDisplay() {
             ref1.current.focus();
         };
     };
-
-
-    useEffect(() => {
-        setTimeout(() => playBckg(), 1000);
-    }, []);
 
     return (
         <>
@@ -79,3 +70,4 @@ function GameDisplay() {
 }
 
 export default GameDisplay;
+
