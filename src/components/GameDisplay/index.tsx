@@ -1,7 +1,9 @@
 import React, { useState, useContext, useRef } from 'react';
 import useSound from 'use-sound';
-import { Card, NumberInput, Badge, Button, Group, ActionIcon, NumberInputHandlers, rem } from '@mantine/core';
+import { Card, NumberInput, Badge, Group, NumberInputHandlers, rem } from '@mantine/core';
 import Result from '../Result';
+import ActionIconWithSound from '../ActionIconWithSound';
+import ButtonWithSound from '../ButtonWithSound';
 import ParametersContext from '../../context/ParametersContext';
 import { IActionTypeParameters } from '../../constant';
 
@@ -10,7 +12,6 @@ function GameDisplay() {
     const handlers = useRef<NumberInputHandlers>();
     const ref1 = useRef() as React.MutableRefObject<HTMLInputElement>;
     const [value, setValue] = useState(state!.variant);
-    const [playClick] = useSound('./sound/click.mp3');
     const [playVariant] = useSound('./sound/click2.wav');
 
     const handleButton = () => {
@@ -24,15 +25,6 @@ function GameDisplay() {
         };
         playVariant();
     };
-
-    const handleActionIcon = (type: 'dec' | 'inc') => {
-        if (type === 'dec') {
-            handlers.current?.decrement();
-        } else {
-            handlers.current?.increment();
-        }
-        playClick();
-    }
 
     return (
         <>
@@ -50,9 +42,9 @@ function GameDisplay() {
                 </Badge>
             </Group>
             <Group spacing={5} position='center' mt="md" mb="xs">
-                <ActionIcon disabled={state?.stackVariant.length === state?.interation} size={42} variant="default" onClick={() => handleActionIcon('dec')}>
+                <ActionIconWithSound disabled={state?.stackVariant.length === state?.interation} size={42} variant="default" onClick={() => handlers.current?.decrement()}>
                     –
-                </ActionIcon>
+                </ActionIconWithSound>
                 <NumberInput
                     ref={ref1}
                     disabled={state?.stackVariant.length === state?.interation}
@@ -70,13 +62,13 @@ function GameDisplay() {
                     step={1}
                     styles={{ input: { width: rem(54), textAlign: 'center' } }}
                 />
-                <ActionIcon disabled={state?.stackVariant.length === state?.interation} size={42} variant="default" onClick={() => handleActionIcon('inc')}>
+                <ActionIconWithSound disabled={state?.stackVariant.length === state?.interation} size={42} variant="default" onClick={() => handlers.current?.increment()}>
                     +
-                </ActionIcon>
+                </ActionIconWithSound>
             </Group>
-            <Button disabled={value <= 0 ? true : false} variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => handleButton()}>
+            <ButtonWithSound sound='./sound/click2.wav' disabled={value <= 0 ? true : false} variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => handleButton()}>
                 Проверим
-            </Button>
+            </ButtonWithSound>
         </>
     );
 }

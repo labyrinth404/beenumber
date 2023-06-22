@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Button, Group, Image } from '@mantine/core';
 import { GRADIENT, IActionTypeMode, Mode } from '../../constant';
+
 import ModeContext from '../../context/ModeContext';
 function ModeDisplay() {
     const { dispatch } = useContext(ModeContext);

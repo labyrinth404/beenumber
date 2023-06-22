@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import useSound from 'use-sound';
 import { ActionIcon } from '@mantine/core';
 
-function SoundButton({ sound }: any) {
-    const [play, { stop: stop }] = useSound(sound, { volume: 0.1 });
+function SoundButton({ play, stop }: any) {
     const [isPlay, setIsPlay] = useState(false);
     const iconSize = 42;
 

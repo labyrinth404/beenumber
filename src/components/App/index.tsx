@@ -1,5 +1,6 @@
 import React, { useContext, useReducer } from 'react';
 import './App.css';
+import useSound from 'use-sound';
 import { Card } from '@mantine/core';
 import { subModeReducer, modeReducer, parametersReducer } from '../../reducer';
 import GameDisplay from '../GameDisplay';
@@ -13,10 +14,11 @@ import SubModeContext from '../../context/SubModeContext';
 import { IActionTypeParameters, Mode, initialState } from '../../constant';
 
 function App() {
+  const [play, { stop: stop, ...arg }] = useSound('./sound/background.mp3', { volume: 0.1 });
   const [state, dispatch] = useReducer(parametersReducer, initialState.parameters);
   const [mode, dispatchMode] = useReducer(modeReducer, initialState.mode);
   const [subMode, dispatchSubMode] = useReducer(subModeReducer, initialState.subMode);
-
+  console.log(Object.keys(arg))
   const handleMode = (selectMode: Mode) => {
     switch (selectMode) {
       case Mode.imOracle:
@@ -46,7 +48,7 @@ function App() {
     <ModeContext.Provider value={{ dispatch: dispatchMode, state: mode }}>
       <SubModeContext.Provider value={{ dispatch: dispatchSubMode, state: subMode }}>
         <ParametersContext.Provider value={{ dispatch, state }}>
-          <SoundButton sound={'./sound/background.mp3'} />
+          <SoundButton play={play} stop={stop} />
           <div className='main'>
             {handleMode(mode)}
           </div>

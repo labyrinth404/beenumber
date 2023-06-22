@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Card, NumberInput, Button, SegmentedControl, Text } from '@mantine/core';
+import useSound from 'use-sound';
+import { Card, NumberInput, SegmentedControl, Text } from '@mantine/core';
 import SubModeContext from '../../context/SubModeContext';
 import ParametersContext from '../../context/ParametersContext';
 import { IActionTypeMode, IActionTypeParameters, complexity, complexityName, complexityImg, complexityShemes, heightIcon, DEFAULT_MAX } from "../../constant"
 import type { dataSwitch } from "../../types";
+import ButtonWithSound from '../ButtonWithSound';
 
 const data: dataSwitch[] = Object.keys(complexity).map((name) => {
     return (
@@ -19,6 +21,7 @@ const data: dataSwitch[] = Object.keys(complexity).map((name) => {
 });
 
 function StartDisplay() {
+    const [play] = useSound('./sound/click.mp3', { volume: 0.3 })
     const { state, dispatch } = useContext(SubModeContext);
     const { dispatch: dispatchParam } = useContext(ParametersContext);
     const [value, setValue] = useState(state?.maxСonstraint);
@@ -30,6 +33,7 @@ function StartDisplay() {
                 payload: complexityShemes[mode]
             });
         }
+        play();
     };
 
     const startGame = () => {
@@ -73,9 +77,9 @@ function StartDisplay() {
                 data={data}
                 onChange={(mode) => saveForm(mode as complexity)}
             />
-            <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => startGame()}>
+            <ButtonWithSound variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => startGame()}>
                 Поехали
-            </Button>
+            </ButtonWithSound>
         </>
     );
 }
