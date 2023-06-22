@@ -8,7 +8,7 @@ import { Mode, IActionTypeMode, IActionTypeParameters, complexity, complexityNam
 import type { dataSwitch } from "../../types";
 import ButtonWithSound from '../ButtonWithSound';
 import { calculateIteration } from '../../utils';
-import Complexity from '../Сomplexity';
+import Complexity from '../Complexity';
 
 const data: dataSwitch[] = Object.keys(complexity).map((name) => {
     return (

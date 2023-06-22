@@ -6,7 +6,7 @@ import ActionIconWithSound from '../ActionIconWithSound';
 import ButtonWithSound from '../ButtonWithSound';
 import ParametersContext from '../../context/ParametersContext';
 import SubModeContext from '../../context/SubModeContext'
-import Complexity from '../Сomplexity';
+import Complexity from '../Complexity';
 import { IActionTypeParameters } from '../../constant';
 
 function GameDisplay() {
