@@ -11,10 +11,10 @@ import SoundButton from '../SoundButton';
 import ParametersContext from '../../context/ParametersContext'
 import ModeContext from '../../context/ModeContext';
 import SubModeContext from '../../context/SubModeContext';
-import { IActionTypeParameters, Mode, initialState } from '../../constant';
+import { Mode, initialState } from '../../constant';
 
 function App() {
-  const [play, { stop: stop, ...arg }] = useSound('./sound/background.mp3', { volume: 0.1 });
+  const [play, { stop: stop }] = useSound('./sound/background_mario.mp3', { volume: 0.1 });
   const [state, dispatch] = useReducer(parametersReducer, initialState.parameters);
   const [mode, dispatchMode] = useReducer(modeReducer, initialState.mode);
   const [subMode, dispatchSubMode] = useReducer(subModeReducer, initialState.subMode);

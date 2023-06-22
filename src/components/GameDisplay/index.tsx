@@ -1,14 +1,17 @@
 import React, { useState, useContext, useRef } from 'react';
 import useSound from 'use-sound';
-import { Card, NumberInput, Badge, Group, NumberInputHandlers, rem } from '@mantine/core';
+import { Card, NumberInput, Badge, Group, NumberInputHandlers, rem, Text } from '@mantine/core';
 import Result from '../Result';
 import ActionIconWithSound from '../ActionIconWithSound';
 import ButtonWithSound from '../ButtonWithSound';
 import ParametersContext from '../../context/ParametersContext';
+import SubModeContext from '../../context/SubModeContext'
+import Complexity from '../Сomplexity';
 import { IActionTypeParameters } from '../../constant';
 
 function GameDisplay() {
     const { state, dispatch } = useContext(ParametersContext);
+    const { state: stateSubMode } = useContext(SubModeContext);
     const handlers = useRef<NumberInputHandlers>();
     const ref1 = useRef() as React.MutableRefObject<HTMLInputElement>;
     const [value, setValue] = useState(state!.variant);
@@ -29,6 +32,10 @@ function GameDisplay() {
 
     return (
         <>
+            <div className='subModeGameStatus'>
+                <Complexity name={stateSubMode?.complexity} />
+                <Text fz="xs" c="dimmed">{`Угадай число от 1 до ${state?.max}`}</Text>
+            </div>
             <Card.Section>
                 <Result />
                 {/* {`${state?.variant} против ${state?.selectNumber}`} */}
@@ -68,7 +75,7 @@ function GameDisplay() {
                     +
                 </ActionIconWithSound>
             </Group>
-            <ButtonWithSound sound='./sound/click2.wav' disabled={value <= 0 ? true : false} variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => handleButton()}>
+            <ButtonWithSound sound='./sound/click2.mp3' disabled={value <= 0 ? true : false} variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => handleButton()}>
                 Проверим
             </ButtonWithSound>
         </>

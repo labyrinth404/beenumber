@@ -4,20 +4,18 @@ import { Card, NumberInput, SegmentedControl, Text } from '@mantine/core';
 import SubModeContext from '../../context/SubModeContext';
 import ModeContext from '../../context/ModeContext';
 import ParametersContext from '../../context/ParametersContext';
-import { Mode, IActionTypeMode, IActionTypeParameters, complexity, complexityName, complexityImg, complexityShemes, heightIcon, DEFAULT_MAX } from "../../constant"
+import { Mode, IActionTypeMode, IActionTypeParameters, complexity, complexityName, complexityShemes, heightIcon, DEFAULT_MAX } from "../../constant"
 import type { dataSwitch } from "../../types";
 import ButtonWithSound from '../ButtonWithSound';
 import { calculateIteration } from '../../utils';
+import Complexity from '../Сomplexity';
 
 const data: dataSwitch[] = Object.keys(complexity).map((name) => {
     return (
         {
             value: complexity[name as complexity],
-            label:
-                <>
-                    <img src={complexityImg[name as complexity]} height={heightIcon}></img>
-                    <Text tt="capitalize">{complexityName[name as complexity]}</Text>
-                </>
+            label: <Complexity name={name} />
+
         }
     )
 });
@@ -79,10 +77,10 @@ function StartDisplay() {
                 </Text>
             </Card.Section>
             <NumberInput
-                value={defaultValue(value)}
+                description={`В режиме ${complexityName[state?.complexity as complexity]} можно выбрать от 16 до ${state?.maxСonstraint ? state?.maxСonstraint : 'бесконечности'}`}
+                value={value}
                 placeholder="Максимальное число"
                 label="Максимальное число"
-                withAsterisk
                 min={DEFAULT_MAX.MIN_VALUE}
                 max={state?.maxСonstraint ? state?.maxСonstraint : undefined}
                 onChange={(n: number) => setValue(n)}
