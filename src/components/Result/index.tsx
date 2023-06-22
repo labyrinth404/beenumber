@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import useSound from "use-sound";
 import './style.css';
 import ParametersContext from '../../context/ParametersContext';
 import { textResult, colorResult } from '../../constant';
@@ -8,6 +9,8 @@ type result = 'start' | 'win' | 'under' | 'more' | 'lose';
 
 function Result() {
     const { state } = useContext(ParametersContext);
+    const [playLose] = useSound('./sound/lose2.mp3', { volume: 0.2 });
+    const [playWin] = useSound('./sound/win2.mp3', { volume: 0.2 });
 
     const displayResult = (type: result): string => {
         if (textResult[type] === textResult.lose) {
@@ -19,9 +22,11 @@ function Result() {
     const variant = (): result => {
         if (typeof state?.variant === 'number' && typeof state.selectNumber === 'number') {
             if (state.variant === state.selectNumber) {
+                playWin();
                 return 'win'
             }
             if (state.stackVariant.length === state.interation) {
+                playLose();
                 return 'lose';
             }
             if (state.variant < 0) {

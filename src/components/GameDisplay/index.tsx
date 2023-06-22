@@ -12,7 +12,8 @@ function GameDisplay() {
     const handlers = useRef<NumberInputHandlers>();
     const ref1 = useRef() as React.MutableRefObject<HTMLInputElement>;
     const [value, setValue] = useState(state!.variant);
-    const [playVariant] = useSound('./sound/click2.wav');
+    const [playVariant] = useSound('./sound/click2.mp3', { volume: 0.1 });
+    const [play] = useSound('./sound/click_coin.mp3', { volume: 0.1 });
 
     const handleButton = () => {
         if (dispatch) {
@@ -52,6 +53,7 @@ function GameDisplay() {
                     hideControls
                     defaultValue={value <= 0 ? undefined : value}
                     onChange={(num) => {
+                        play();
                         if (typeof num === 'number') {
                             setValue(num);
                         }
