@@ -32,3 +32,8 @@ body {
     width: 98vw;
   }
 }
+
+.disabled {
+  filter: grayscale(100%);
+  cursor: not-allowed;
+}

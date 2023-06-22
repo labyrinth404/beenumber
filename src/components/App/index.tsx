@@ -18,7 +18,7 @@ function App() {
   const [state, dispatch] = useReducer(parametersReducer, initialState.parameters);
   const [mode, dispatchMode] = useReducer(modeReducer, initialState.mode);
   const [subMode, dispatchSubMode] = useReducer(subModeReducer, initialState.subMode);
-  console.log(Object.keys(arg))
+
   const handleMode = (selectMode: Mode) => {
     switch (selectMode) {
       case Mode.imOracle:

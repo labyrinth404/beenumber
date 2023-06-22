@@ -34,9 +34,9 @@ function ModeDisplay() {
                     </Button>
 
                 </div>
-                <div className="img-menu" onClick={() => handleYouOracle()}>
+                <div className="img-menu disabled" onClick={() => false && handleYouOracle()}>
                     <Image width={200} height={200} src='./day27-my-robot.svg' />
-                    <Button fullWidth variant="gradient" gradient={GRADIENT.youOracle} >
+                    <Button disabled fullWidth variant="gradient" gradient={GRADIENT.youOracle} >
                         Загадываю
                     </Button>
 

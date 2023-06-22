@@ -9,8 +9,8 @@ type result = 'start' | 'win' | 'under' | 'more' | 'lose';
 
 function Result() {
     const { state } = useContext(ParametersContext);
-    const [playLose] = useSound('./sound/lose2.mp3', { volume: 0.2 });
-    const [playWin] = useSound('./sound/win2.mp3', { volume: 0.2 });
+    const [playLose] = useSound('./sound/lose_mario.mp3', { volume: 0.2 });
+    const [playWin] = useSound('./sound/win_mario.mp3', { volume: 0.2 });
 
     const displayResult = (type: result): string => {
         if (textResult[type] === textResult.lose) {
