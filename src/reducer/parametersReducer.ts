@@ -1,4 +1,4 @@
-import { calculateIteration } from "../utils";
+import { calculateIteration, randomNumber } from "../utils";
 import { IActionTypeParameters, initialState } from "../constant";
 import type { IGameParameters, IActionParameters } from "../types";
 
@@ -6,16 +6,19 @@ const parametersReducer = (
   state: IGameParameters,
   action: IActionParameters
 ) => {
-  const { init, setMax, setMin, setSelectNumber, setVariant, reset } =
+  const { init, setup, setMax, setMin, setSelectNumber, setVariant, reset } =
     IActionTypeParameters;
   switch (action.type) {
     case init:
       return {
         ...action.payload,
-        selectNumber:
-          Math.ceil(Math.random() * action.payload.max) +
-          initialState.subMode.interationInc,
+        selectNumber: randomNumber(action.payload.max),
         interation: calculateIteration(action.payload.max),
+      };
+    case setup:
+      return {
+        ...action.payload,
+        selectNumber: randomNumber(action.payload.max),
       };
     case setMax:
       return {

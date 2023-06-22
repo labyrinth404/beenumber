@@ -22,22 +22,17 @@ function App() {
   const handleMode = (selectMode: Mode) => {
     switch (selectMode) {
       case Mode.imOracle:
-        if (!state.selectNumber) {
-          dispatch({
-            type: IActionTypeParameters.init,
-            payload: {
-              ...initialState.parameters,
-              max: 128,
-            }
-          });
-        };
         return <Card shadow="sm" padding="lg" radius="md" withBorder>
           <GameDisplay />
         </Card>
           ;
-      case Mode.youOracle:
+      case Mode.imOracleSetting:
         return <Card shadow="sm" padding="lg" radius="md" withBorder >
           <StartDisplay />
+        </Card>
+      case Mode.youOracle:
+        return <Card shadow="sm" padding="lg" radius="md" withBorder >
+          <></>
         </Card>
       default: return <ModeDisplay />
 

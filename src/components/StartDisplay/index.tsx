@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import useSound from 'use-sound';
 import { Card, NumberInput, SegmentedControl, Text } from '@mantine/core';
 import SubModeContext from '../../context/SubModeContext';
+import ModeContext from '../../context/ModeContext';
 import ParametersContext from '../../context/ParametersContext';
-import { IActionTypeMode, IActionTypeParameters, complexity, complexityName, complexityImg, complexityShemes, heightIcon, DEFAULT_MAX } from "../../constant"
+import { Mode, IActionTypeMode, IActionTypeParameters, complexity, complexityName, complexityImg, complexityShemes, heightIcon, DEFAULT_MAX } from "../../constant"
 import type { dataSwitch } from "../../types";
 import ButtonWithSound from '../ButtonWithSound';
+import { calculateIteration } from '../../utils';
 
 const data: dataSwitch[] = Object.keys(complexity).map((name) => {
     return (
@@ -23,6 +25,7 @@ const data: dataSwitch[] = Object.keys(complexity).map((name) => {
 function StartDisplay() {
     const [play] = useSound('./sound/click.mp3', { volume: 0.3 })
     const { state, dispatch } = useContext(SubModeContext);
+    const { dispatch: dispatchMode } = useContext(ModeContext);
     const { dispatch: dispatchParam } = useContext(ParametersContext);
     const [value, setValue] = useState(state?.maxСonstraint);
 
@@ -37,10 +40,21 @@ function StartDisplay() {
     };
 
     const startGame = () => {
-        if (dispatchParam) {
+        if (dispatchParam && dispatchMode) {
             dispatchParam({
-                type: IActionTypeParameters.setMax,
-                payload: value
+                type: IActionTypeParameters.setup,
+                payload: {
+                    min: 1,
+                    max: value,
+                    interation: calculateIteration(value as number, complexityShemes[state!.complexity].interationInc),
+                    selectNumber: 0,
+                    variant: -1,
+                    stackVariant: [],
+                }
+            });
+            dispatchMode({
+                type: IActionTypeMode.setMode,
+                payload: Mode.imOracle
             });
         }
     }
@@ -65,7 +79,7 @@ function StartDisplay() {
                 </Text>
             </Card.Section>
             <NumberInput
-                value={defaultValue(state?.maxСonstraint)}
+                value={defaultValue(value)}
                 placeholder="Максимальное число"
                 label="Максимальное число"
                 withAsterisk

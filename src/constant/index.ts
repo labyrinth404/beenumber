@@ -17,6 +17,7 @@ export enum colorResult {
 
 export enum IActionTypeParameters {
   init = "initial",
+  setup = "setup",
   setMax = "setMax",
   setMin = "setMin",
   setVariant = "setIteration",
@@ -54,6 +55,7 @@ export const GRADIENT = {
 export enum Mode {
   youOracle = "youOracle",
   imOracle = "imOracle",
+  imOracleSetting = "imOracleSetting",
   notSelected = "notSelected",
   youOracleLight = "youOracle",
   imOracleLight = "imOracleLight",

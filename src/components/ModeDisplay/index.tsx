@@ -10,7 +10,7 @@ function ModeDisplay() {
         if (dispatch) {
             dispatch({
                 type: IActionTypeMode.setMode,
-                payload: Mode.imOracle
+                payload: Mode.imOracleSetting
             })
         }
     };
@@ -28,14 +28,14 @@ function ModeDisplay() {
         <>
             <Group position="center">
                 <div className="img-menu" onClick={() => handleImOracle()}>
-                    <Image width={200} height={200} src='./day22-owl.svg' />
+                    <Image width={200} height={200} src='./img/mode1.svg' />
                     <Button fullWidth variant="gradient" gradient={GRADIENT.imOracle} >
                         Угадаю
                     </Button>
 
                 </div>
                 <div className="img-menu disabled" onClick={() => false && handleYouOracle()}>
-                    <Image width={200} height={200} src='./day27-my-robot.svg' />
+                    <Image width={200} height={200} src='./img/mode2.svg' />
                     <Button disabled fullWidth variant="gradient" gradient={GRADIENT.youOracle} >
                         Загадываю
                     </Button>
