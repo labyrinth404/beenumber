@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/beenumber/static/css/main.466caaaa.css",
-    "main.js": "/beenumber/static/js/main.76e6f089.js",
+    "main.js": "/beenumber/static/js/main.afbc4736.js",
     "static/js/845.1e9c31a1.chunk.js": "/beenumber/static/js/845.1e9c31a1.chunk.js",
     "static/js/787.e4b9317e.chunk.js": "/beenumber/static/js/787.e4b9317e.chunk.js",
     "index.html": "/beenumber/index.html",
     "main.466caaaa.css.map": "/beenumber/static/css/main.466caaaa.css.map",
-    "main.76e6f089.js.map": "/beenumber/static/js/main.76e6f089.js.map",
+    "main.afbc4736.js.map": "/beenumber/static/js/main.afbc4736.js.map",
     "845.1e9c31a1.chunk.js.map": "/beenumber/static/js/845.1e9c31a1.chunk.js.map",
     "787.e4b9317e.chunk.js.map": "/beenumber/static/js/787.e4b9317e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.466caaaa.css",
-    "static/js/main.76e6f089.js"
+    "static/js/main.afbc4736.js"
   ]
 }
