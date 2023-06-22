@@ -3,7 +3,7 @@ import useSound from 'use-sound';
 import { Button } from '@mantine/core';
 
 function ButtonWithSound(props: any) {
-    const { sound = './sound/click3.mp3', disabled, color, variant, onClick, children, fullWidth, mt, radius } = props;
+    const { sound = './sound/click.mp3', disabled, color, variant, onClick, children, fullWidth, mt, radius } = props;
     const [playVariant] = useSound(sound, { volume: 0.3 });
 
     const handleButton = () => {

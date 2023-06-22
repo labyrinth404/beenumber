@@ -37,3 +37,9 @@ body {
   filter: grayscale(100%);
   cursor: not-allowed;
 }
+
+.settingStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

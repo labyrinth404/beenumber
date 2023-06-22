@@ -4,7 +4,7 @@ import { Card, NumberInput, SegmentedControl, Text } from '@mantine/core';
 import SubModeContext from '../../context/SubModeContext';
 import ModeContext from '../../context/ModeContext';
 import ParametersContext from '../../context/ParametersContext';
-import { Mode, IActionTypeMode, IActionTypeParameters, complexity, complexityName, complexityShemes, heightIcon, DEFAULT_MAX } from "../../constant"
+import { Mode, IActionTypeMode, IActionTypeParameters, complexity, complexityName, complexityShemes, DEFAULT_MAX } from "../../constant"
 import type { dataSwitch } from "../../types";
 import ButtonWithSound from '../ButtonWithSound';
 import { calculateIteration } from '../../utils';
@@ -57,24 +57,13 @@ function StartDisplay() {
         }
     }
 
-    const defaultValue = (num: any): number => {
-        if (typeof num === 'number') {
-            if (state?.complexity === complexity.hard) {
-                return DEFAULT_MAX.HARD;
-            } else if (state?.complexity === complexity.lucky) {
-                return DEFAULT_MAX.LUCKY
-            }
-            return num;
-        }
-        return DEFAULT_MAX.MIN_VALUE;
-    }
-
     return (
         <>
             <Card.Section>
-                <Text >
-                    Настройки игры
-                </Text>
+                <div className='settingStatus'>
+                    <img src="./img/setting.png" height={40} alt="Настройки игры" style={{ paddingRight: 10 }} />
+                    <Text fz="xs" fw={900} style={{ color: 'cadetblue' }}>Настройки игры</Text>
+                </div>
             </Card.Section>
             <NumberInput
                 description={`В режиме ${complexityName[state?.complexity as complexity]} можно выбрать от 16 до ${state?.maxСonstraint ? state?.maxСonstraint : 'бесконечности'}`}
