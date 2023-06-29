@@ -60,3 +60,7 @@ export type dataSwitch = {
   label: JSX.Element;
   value: complexity;
 };
+
+export interface GameProps extends React.ComponentPropsWithoutRef<"div"> {
+  mode: Mode.imOracle | Mode.youOracle;
+}

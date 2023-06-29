@@ -1,4 +1,12 @@
+import { randomNumber } from "../utils";
 import type { TState, ISubMode } from "../types";
+
+export enum complexity {
+  easy = "easy",
+  normal = "normal",
+  hard = "hard",
+  lucky = "lucky",
+}
 
 export enum textResult {
   start = "загадал",
@@ -56,6 +64,7 @@ export enum Mode {
   youOracle = "youOracle",
   imOracle = "imOracle",
   imOracleSetting = "imOracleSetting",
+  youOracleSetting = "youOracleSetting",
   notSelected = "notSelected",
   youOracleLight = "youOracle",
   imOracleLight = "imOracleLight",
@@ -75,12 +84,39 @@ export enum complexityImg {
   lucky = "./img/m_lucky1.png",
 }
 
-export enum complexity {
-  easy = "easy",
-  normal = "normal",
-  hard = "hard",
-  lucky = "lucky",
-}
+export const heightIcon = 40;
+export const DEFAULT_MAX = {
+  MIN_VALUE: 16,
+  HARD: 2048,
+  LUCKY: 8096,
+};
+
+export const menuShemes = [
+  {
+    icon: "./img/mode1.svg",
+    text: "Угадаю",
+    gradient: GRADIENT.imOracle,
+    width: 200,
+    height: 200,
+    class: "img-menu",
+    params: {
+      type: IActionTypeMode.setMode,
+      payload: Mode.imOracleSetting,
+    },
+  },
+  {
+    icon: "./img/mode2.svg",
+    text: "Загадываю",
+    gradient: GRADIENT.youOracle,
+    width: 200,
+    height: 200,
+    class: "img-menu",
+    params: {
+      type: IActionTypeMode.setMode,
+      payload: Mode.youOracleSetting,
+    },
+  },
+];
 
 export const complexityShemes: Record<complexity, ISubMode> = {
   easy: {
@@ -105,6 +141,47 @@ export const complexityShemes: Record<complexity, ISubMode> = {
   },
 };
 
+export const settingShemes = {
+  imOracle: {
+    label: "Максимальное число",
+    icon: "./img/setting.png",
+    dispatchModePayload: Mode.imOracle,
+    dispatchParamPayload: (
+      value: number,
+      calculateIteration: Function,
+      complexityShemes: any
+    ) => {
+      return {
+        min: 1,
+        max: value,
+        interation: calculateIteration(value as number, complexityShemes),
+        selectNumber: 0,
+        variant: -1,
+        stackVariant: [],
+      };
+    },
+  },
+  youOracle: {
+    label: "Твое число",
+    icon: "./img/setting2.png",
+    dispatchModePayload: Mode.youOracle,
+    dispatchParamPayload: (
+      value: number,
+      calculateIteration: Function,
+      complexityShemes: any
+    ) => {
+      return {
+        min: 1,
+        max: value,
+        interation: calculateIteration(value as number, complexityShemes),
+        selectNumber: randomNumber(value),
+        variant: -1,
+        stackVariant: [],
+      };
+    },
+  },
+};
+
 export const initialState: TState = {
   parameters: {
     min: 1,
@@ -116,11 +193,4 @@ export const initialState: TState = {
   },
   mode: Mode.notSelected,
   subMode: complexityShemes.easy,
-};
-
-export const heightIcon = 40;
-export const DEFAULT_MAX = {
-  MIN_VALUE: 16,
-  HARD: 2048,
-  LUCKY: 8096,
 };

@@ -4,7 +4,7 @@ import useSound from 'use-sound';
 import { Card } from '@mantine/core';
 import { subModeReducer, modeReducer, parametersReducer } from '../../reducer';
 import GameDisplay from '../GameDisplay';
-import StartDisplay from '../StartDisplay';
+import SettingDisplay from '../SettingDisplay';
 import ModeDisplay from '../ModeDisplay';
 import SoundButton from '../SoundButton';
 
@@ -21,19 +21,22 @@ function App() {
 
   const handleMode = (selectMode: Mode) => {
     switch (selectMode) {
-      case Mode.imOracle:
-        return <Card shadow="sm" padding="lg" radius="md" withBorder>
-          <GameDisplay />
-        </Card>
-          ;
       case Mode.imOracleSetting:
         return <Card shadow="sm" padding="lg" radius="md" withBorder >
-          <StartDisplay />
-        </Card>
+          <SettingDisplay mode={Mode.imOracle} />
+        </Card>;
+      case Mode.imOracle:
+        return <Card shadow="sm" padding="lg" radius="md" withBorder>
+          <GameDisplay mode={selectMode} />
+        </Card>;
+      case Mode.youOracleSetting:
+        return <Card shadow="sm" padding="lg" radius="md" withBorder >
+          <SettingDisplay mode={Mode.youOracle} />
+        </Card>;
       case Mode.youOracle:
         return <Card shadow="sm" padding="lg" radius="md" withBorder >
-          <></>
-        </Card>
+          <GameDisplay mode={selectMode} />
+        </Card>;
       default: return <ModeDisplay />
 
     }
