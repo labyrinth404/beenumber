@@ -11,7 +11,7 @@ function ControlBar({ children }: any) {
     )
 }
 
-function ImControl({ disabled, min, max, handlers, value, setValue, refer }: any) {
+function ImControl({ disabled, min, max, handlers, value, setValue, refer, handleButton }: any) {
     const [play] = useSound('./sound/click_coin.mp3', { volume: 0.1 });
 
     return (
@@ -34,6 +34,7 @@ function ImControl({ disabled, min, max, handlers, value, setValue, refer }: any
                 handlersRef={handlers}
                 min={min}
                 max={max}
+                onKeyDown={(e) => e.key === "Enter" && handleButton()}
                 step={1}
                 styles={{ input: { width: rem(54), textAlign: 'center' } }}
             />
