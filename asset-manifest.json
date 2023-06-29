@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/beenumber/static/css/main.78705160.css",
+    "main.css": "/beenumber/static/css/main.7fe73ef5.css",
     "main.js": "/beenumber/static/js/main.21a1e41d.js",
     "static/js/845.1e9c31a1.chunk.js": "/beenumber/static/js/845.1e9c31a1.chunk.js",
     "static/js/787.e4b9317e.chunk.js": "/beenumber/static/js/787.e4b9317e.chunk.js",
-    "static/media/mount.png": "/beenumber/static/media/mount.30f073f72a38c3888136.png",
-    "static/media/tree.png": "/beenumber/static/media/tree.0279967a635d1ae34172.png",
-    "static/media/fly.png": "/beenumber/static/media/fly.37d65e50bbaaa12b9920.png",
+    "static/media/mount.png": "/beenumber/static/media/mount.fbd1861aae8691635a7d.png",
+    "static/media/tree.png": "/beenumber/static/media/tree.4ea1eda74da770d2b223.png",
+    "static/media/fly.png": "/beenumber/static/media/fly.3467049d48d20aee1862.png",
     "index.html": "/beenumber/index.html",
-    "main.78705160.css.map": "/beenumber/static/css/main.78705160.css.map",
+    "main.7fe73ef5.css.map": "/beenumber/static/css/main.7fe73ef5.css.map",
     "main.21a1e41d.js.map": "/beenumber/static/js/main.21a1e41d.js.map",
     "845.1e9c31a1.chunk.js.map": "/beenumber/static/js/845.1e9c31a1.chunk.js.map",
     "787.e4b9317e.chunk.js.map": "/beenumber/static/js/787.e4b9317e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.78705160.css",
+    "static/css/main.7fe73ef5.css",
     "static/js/main.21a1e41d.js"
   ]
 }
